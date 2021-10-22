@@ -33,6 +33,65 @@
 
  
 ### 2. PostgreSQL/PostGIS
+### 1) PostgreSQL 설치
+
+- PostgreSQL 홈페이지(https://www.postgresql.org/)에 접속하여, Windows용 설치 파일을 내려 받는다 (https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
+
+![img](blob:https://gt1000.atlassian.net/85f72c0f-1fcd-4192-a2a5-d7a14172c051#media-blob-url=true&id=adf13a54-2e39-4bcb-b473-e2117ba7f2df&collection=contentId-235274269&contextId=235274269&mimeType=image%2Fpng&name=image-20200821-014650.png&size=45716&width=542&height=322&alt=)
+
+- 내려 받은 파일을 실행하여, PostgreSQL을 설치한다.
+
+- 폴더 버튼을 클릭하고 설치 할 경로를 지정한다.
+- 설치 항목에 Stack Builder 는 선택하지 않는다. 
+
+- Password와 Retype password를 “postgres”로 설정한다.
+
+- 포트(5432) 및 지역(Korea)을 설정한다.
+
+![img](blob:https://gt1000.atlassian.net/89c4c1ba-989b-493b-9d91-75568d2d2fa4#media-blob-url=true&id=00d3eef5-7e2c-4200-a1a8-67597a8cf898&collection=contentId-235274269&contextId=235274269&mimeType=image%2Fpng&name=image-20200821-043015.png&size=146930&width=1144&height=597&alt=)
+
+ 
+
+### 2) PostGIS 설치
+
+- postGIS 설치 방법으로는 postgresql 설치 후 stack builder를 통해 설치 하거나 직접 인스톨러를 실행하는 방법이 있는데 후자로 진행하도록 한다. stack builder를 통한 설치는 종종 오류가 발생하고 인터넷이 되지 않는 환경을 고려했을 때는 인스톨러를 통한 설치가 안전하다. ([http://download.osgeo.org/postgis/windows/pg12/](http://download.osgeo.org/postgis/windows/pg11/))
+- 여기서는 [postgis-bundle-pg12x64-setup-3.0.2-1.exe](http://download.osgeo.org/postgis/windows/pg12/postgis-bundle-pg12x64-setup-3.0.2-1.exe) 버전을 다운받는다.
+- 내려 받기가 완료되면 PostGIS 설치를 진행할 수 있다.
+
+![img](blob:https://gt1000.atlassian.net/24fcd1b5-0cdf-4f0e-b4e6-c26c7c052a52#media-blob-url=true&id=095e8309-89cf-46f7-9db5-47d79a3cce25&collection=contentId-235274269&contextId=235274269&mimeType=image%2Fpng&name=image-20200821-043908.png&size=307705&width=1142&height=618&alt=)
+
+### 3) PostgreSQL 설정
+
+- 파티션 설정을 위해서 postgresql.conf 설정 파일의 “enable_partition_pruning = on”의 주석을 해제한다. 
+
+- postgresql.conf 파일은 윈도우 기준으로 기본으로 설치시 **C:\Program Files\PostgreSQL\12\data** 경로에 위치하며, 설정파일 수정후에는 postgresql 서비스를 재시작해야한다.
+
+  ![img](blob:https://gt1000.atlassian.net/770b3afa-235c-42a4-b08f-2d5132130b8e#media-blob-url=true&id=15a5efb9-6423-4ecb-a71d-69f6112580e7&collection=contentId-235274269&contextId=235274269&mimeType=image%2Fpng&name=image-20200821-044102.png&size=49065&width=943&height=496&alt=)
+
+   
+
+### 4) 데이터 베이스 생성
+
+- psql 또는 PgAdmin을 사용하여 데이터베이스에 연결한 후, 아래와 같이 데이터베이스를 생성한다.
+
+  CREATE DATABASE mago3d
+  WITH OWNER = postgres
+       ENCODING = 'UTF8'
+       TEMPLATE = template0
+       TABLESPACE = pg_default
+       LC_COLLATE = 'C'
+       LC_CTYPE = 'C'
+       CONNECTION LIMIT = -1;
+
+### 5) PostGIS 활성화
+
+- psql 또는 PgAdmin을 사용하여 생성한 데이터베이스에 연결한 후, 다음 SQL을 실행한다.
+
+  CREATE EXTENSION postgis;
+
+- PostGIS 설치 확인
+
+  SELECT postgis_version();
 ### 3. GDAL
 ### 4. GeoServer
 ### 5. F4D Converter
