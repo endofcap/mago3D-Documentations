@@ -2,11 +2,10 @@
 ### 1) Java 설치
 
 - 자바설치 홈페이지(https://jdk.java.net/archive/)에 접속하여 Java를 구동하기 위한 환경에 해당하는 파일을 내려받는다.
-
-
-   
-
 - 내려 받은 압축 파일을 설치할 폴더에 압축 해제한다.
+
+![](./images/e238d7cc-e6ea-40c8-89b6-17f437362bde.png)
+
 
 ### 2) Java 환경변수 설정
 
@@ -18,7 +17,7 @@
 - Java 설치 경로를 설정 한 후, **시스템 변수의 [Path] 변수**를 선택하고 [편집] 버튼을 클릭한다.
 - 제일 앞쪽에 **%JAVA_HOME%\bin;**을 입력하고 저장한다.
 
-![img]
+![img](./images/a8d04789-6e41-46ff-bf86-6c3ae9c1737c.png)
 
  
 
@@ -30,7 +29,7 @@
 1java -version
 ```
 
-![img]
+![img](./images/d55a5b4e-37dd-4c43-83be-15654a881691.png)
 
  
 ### 2. PostgreSQL/PostGIS
