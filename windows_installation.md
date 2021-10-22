@@ -4,7 +4,7 @@
 - 자바설치 홈페이지(https://jdk.java.net/archive/)에 접속하여 Java를 구동하기 위한 환경에 해당하는 파일을 내려받는다.
 - 내려 받은 압축 파일을 설치할 폴더에 압축 해제한다.
 
-![](./images/e238d7cc-e6ea-40c8-89b6-17f437362bde.png)
+![img](./images/e238d7cc-e6ea-40c8-89b6-17f437362bde.png)
 
 
 ### 2) Java 환경변수 설정
