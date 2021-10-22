@@ -1,0 +1,44 @@
+### 1. Java
+### 1) Java 설치
+
+- 자바설치 홈페이지(https://jdk.java.net/archive/)에 접속하여 Java를 구동하기 위한 환경에 해당하는 파일을 내려받는다.
+
+![img](./images/e238d7cc-e6ea-40c8-89b6-17f437362bde.png)
+   
+
+- 내려 받은 압축 파일을 설치할 폴더에 압축 해제한다.
+
+### 2) Java 환경변수 설정
+
+- [제어판] → [시스템 및 보안] → [시스템] 또는 [내 PC]의 [속성]을 클릭 한 후, [고급 시스템 설정]을 클릭한다.
+
+- [시스템 속성]의 [고급]탭 화면에서 [환경 변수]를 클릭한다.
+
+- [환경변수] 화면에서 [새로 만들기]를 클릭하여, 변수 이름과 변수 값 입력란에 **JAVA_HOME**과 Java의 경로를 설정한다.
+- Java 설치 경로를 설정 한 후, **시스템 변수의 [Path] 변수**를 선택하고 [편집] 버튼을 클릭한다.
+- 제일 앞쪽에 **%JAVA_HOME%\bin;**을 입력하고 저장한다.
+
+![img](blob:https://gt1000.atlassian.net/a8d04789-6e41-46ff-bf86-6c3ae9c1737c#media-blob-url=true&id=75a2c852-1095-45b4-86cf-ec72ae31ea86&collection=contentId-235274269&contextId=235274269&mimeType=image%2Fpng&name=image-20200821-011234.png&size=123370&width=816&height=704&alt=)
+
+ 
+
+### 3) Java 설치 확인
+
+- 명령 프롬프트 창을 실행시켜 아래와 같이 명령어 실행
+
+```
+1java -version
+```
+
+![img](blob:https://gt1000.atlassian.net/d55a5b4e-37dd-4c43-83be-15654a881691#media-blob-url=true&id=7bbbcc6b-7981-4917-8263-66823994c9f4&collection=contentId-235274269&contextId=235274269&mimeType=image%2Fpng&name=image-20200821-011447.png&size=4817&width=453&height=64&alt=)
+
+ 
+### 2. PostgreSQL/PostGIS
+### 3. GDAL
+### 4. GeoServer
+### 5. F4D Converter
+### 6. RabbitMQ
+### 7. 기본 테이블 생성 및 패스워드 업데이트
+### 8. 설정
+### 9. 레이어 업로드 테스트
+### 10. 3D 데이터 업로드 테스트
