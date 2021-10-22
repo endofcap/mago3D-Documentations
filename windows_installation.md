@@ -236,6 +236,15 @@ https://sourceforge.net/projects/mango-spatialstatistics/files/GeoServer/
 
   ![img](./images/627b0410-bfa7-4596-84c4-f5e973057a75.png)
 ## 5. F4D Converter
+- 아래의 링크를 통해서, Converter를 내려 받는다.
+
+[F4DConverter/SetupF4DConverter.msi at master · Gaia3D/F4DConverter](https://github.com/Gaia3D/F4DConverter/tree/master/install) 
+
+- **설치경로 : C:\F4DConverterConsole**
+
+- 내려 받은 파일을 실행하여, Converter를 설치한다.
+
+  ![](./images/8890e42d-321c-4dc3-aa0f-3a7a603276bd.png)
 ## 6. RabbitMQ
 ## 7. 기본 테이블 생성 및 패스워드 업데이트
 ## 8. 설정
