@@ -1,4 +1,4 @@
-### 1. Java
+## 1. Java
 ### 1) Java 설치
 
 - 자바설치 홈페이지(https://jdk.java.net/archive/)에 접속하여 Java를 구동하기 위한 환경에 해당하는 파일을 내려받는다.
@@ -32,7 +32,7 @@
 ![img](./images/d55a5b4e-37dd-4c43-83be-15654a881691.png)
 
 
-### 2. PostgreSQL/PostGIS
+## 2. PostgreSQL/PostGIS
 ### 1) PostgreSQL 설치
 
 - PostgreSQL 홈페이지(https://www.postgresql.org/)에 접속하여, Windows용 설치 파일을 내려 받는다 (https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
@@ -97,7 +97,7 @@
   ```
   SELECT postgis_version();
   ```
-### 3. GDAL
+## 3. GDAL
 ### 1) GDAL 설치
 
 - gdal을 설치하는 이유는 shape 파일을 db에 insert할 때 ogr2ogr을 사용하기 위함인데, gdal만 단독으로 설치하거나 qgis를 설치하여 gdal path를 잡아주는 방법이 있다.
@@ -139,10 +139,105 @@
 - **환경변수를 등록한 후에는 was가 실행중이라면 재기동해야 등록한 환경변수가 적용되므로 주의해야한다. cmd 창역시 환경변수를 등록후에는 새로운 cmd 창에서 확인하도록 한다.**
 
 
-### 4. GeoServer
-### 5. F4D Converter
-### 6. RabbitMQ
-### 7. 기본 테이블 생성 및 패스워드 업데이트
-### 8. 설정
-### 9. 레이어 업로드 테스트
-### 10. 3D 데이터 업로드 테스트
+## 4. GeoServer
+### 1) GeoServer 설치
+
+- GeoServer 홈페이지(http://geoserver.org/release/maintain/)에 접속하여, Tomcat에 war형태로 올려서 서비스하기 위해 Web Archive 버전을 내려 받는다.
+- 내려받은 파일을 압축해제 후, geoserver.war파일을 톰캣의 webapp밑에 압축을 해제한다.
+
+### 2) WPS Extensions
+
+- GeoServer 버전에 맞는 플러그인을 내려 받는다.
+
+https://sourceforge.net/projects/geoserver/files/GeoServer/2.16.4/extensions/geoserver-2.16.4-wps-plugin.zip/download
+
+- gs-web-wps-2.16.4.jar
+
+- gs-wps-core-2.16.4.jar
+
+- gs-process-geometry-22.4.jar
+
+- gt-xsd-wps-22.4.jar
+
+- net.opengis.wps-22.4.jar
+
+- serializer-2.7.2.jar
+
+- 압축을 풀고, .jar 파일들을 Geoserer의 WEB-INF/lib 폴더에 복사하여 붙여 넣는다.
+
+- GeoServer 재시작 후, 서비스 항목에 WPS 확인한다.
+
+![img](./images/a2aa61eb-0c49-4fb6-9ba0-d07e294c27d8.png)
+
+### 3) OpenGXT + GeoTools Extentions
+
+- GeoServer 버전에 맞는 플러그인을 내려 받는다.
+
+https://sourceforge.net/projects/mango-spatialstatistics/files/GeoServer/
+
+- gs-wps-spatialstatistics-2.16-SNAPSHOT.jar
+
+- gt-process-spatialstatistics-22-SNAPSHOT.jar
+
+- 압축을 풀고, .jar 파일들을 Geoserer의 WEB-INF/lib 폴더에 복사하여 붙여 넣는다.
+
+- GeoServer 재시작 후, 바인딩된 WPS 프로세스 확인
+
+- GeoServer 관리자 페이지 → 데모 → WPS 요청 빌더
+
+![img](./images/4559786b-7e34-4642-bfbf-07c7b8318c2a.png)
+
+ 
+
+### 4) CORS 설정
+
+- 톰캣의 web.xml에 다음과 같이 설정한다.
+
+  ```
+  <filter>
+      <filter-name>CorsFilter</filter-name>
+      <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+      <init-param>
+          <param-name>cors.allowed.origins</param-name>
+          <param-value>*</param-value>
+      </init-param>
+      <init-param>
+          <param-name>cors.allowed.methods</param-name>
+          <param-value>GET,POST,HEAD,OPTIONS,PUT</param-value>
+      </init-param>
+      <init-param>
+          <param-name>cors.allowed.headers</param-name>
+          <param-value>*</param-value>
+      </init-param>
+      <init-param>
+          <param-name>cors.exposed.headers</param-name>
+          <param-value>Access-Control-Allow-Origin,Access-Control-Allow-Credentials</param-value>
+      </init-param>
+      <init-param>
+          <param-name>cors.preflight.maxage</param-name>
+          <param-value>10</param-value>
+      </init-param>
+    </filter>
+  ```
+
+### 5) 작업공간 및 저장소 생성
+
+- GeoServer 관리자 페이지 → 데이터/작업공간 → **새로운 작업공간 추가하기**
+
+```
+이름 : mago3d
+네임스페이스 URI : http://www.gaia3d.com
+기본 작업공간으로 설정하기 체크
+```
+
+- GeoServer 관리자 페이지 → 데이터/저장소 → 새로운 저장소 생성하기 → PostGIS
+
+- postgresql 설치 후 생성한 database정보를 적어주는데 postgis extension을 설치하지 않으면 저장소 등록이 되지 않으므로 꼭 생성한 db에 posgis extension을 설치해야 한다.
+
+  ![img](./images/627b0410-bfa7-4596-84c4-f5e973057a75.png)
+## 5. F4D Converter
+## 6. RabbitMQ
+## 7. 기본 테이블 생성 및 패스워드 업데이트
+## 8. 설정
+## 9. 레이어 업로드 테스트
+## 10. 3D 데이터 업로드 테스트
