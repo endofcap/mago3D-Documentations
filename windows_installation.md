@@ -31,13 +31,13 @@
 
 ![img](./images/d55a5b4e-37dd-4c43-83be-15654a881691.png)
 
- 
+
 ### 2. PostgreSQL/PostGIS
 ### 1) PostgreSQL 설치
 
 - PostgreSQL 홈페이지(https://www.postgresql.org/)에 접속하여, Windows용 설치 파일을 내려 받는다 (https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
 
-![img](blob:https://gt1000.atlassian.net/85f72c0f-1fcd-4192-a2a5-d7a14172c051#media-blob-url=true&id=adf13a54-2e39-4bcb-b473-e2117ba7f2df&collection=contentId-235274269&contextId=235274269&mimeType=image%2Fpng&name=image-20200821-014650.png&size=45716&width=542&height=322&alt=)
+![](.\images\85f72c0f-1fcd-4192-a2a5-d7a14172c051.png)
 
 - 내려 받은 파일을 실행하여, PostgreSQL을 설치한다.
 
@@ -48,7 +48,7 @@
 
 - 포트(5432) 및 지역(Korea)을 설정한다.
 
-![img](blob:https://gt1000.atlassian.net/89c4c1ba-989b-493b-9d91-75568d2d2fa4#media-blob-url=true&id=00d3eef5-7e2c-4200-a1a8-67597a8cf898&collection=contentId-235274269&contextId=235274269&mimeType=image%2Fpng&name=image-20200821-043015.png&size=146930&width=1144&height=597&alt=)
+![](.\images\89c4c1ba-989b-493b-9d91-75568d2d2fa4.png)
 
  
 
@@ -58,7 +58,7 @@
 - 여기서는 [postgis-bundle-pg12x64-setup-3.0.2-1.exe](http://download.osgeo.org/postgis/windows/pg12/postgis-bundle-pg12x64-setup-3.0.2-1.exe) 버전을 다운받는다.
 - 내려 받기가 완료되면 PostGIS 설치를 진행할 수 있다.
 
-![img](blob:https://gt1000.atlassian.net/24fcd1b5-0cdf-4f0e-b4e6-c26c7c052a52#media-blob-url=true&id=095e8309-89cf-46f7-9db5-47d79a3cce25&collection=contentId-235274269&contextId=235274269&mimeType=image%2Fpng&name=image-20200821-043908.png&size=307705&width=1142&height=618&alt=)
+![](.\images\24fcd1b5-0cdf-4f0e-b4e6-c26c7c052a52.png)
 
 ### 3) PostgreSQL 설정
 
@@ -66,7 +66,7 @@
 
 - postgresql.conf 파일은 윈도우 기준으로 기본으로 설치시 **C:\Program Files\PostgreSQL\12\data** 경로에 위치하며, 설정파일 수정후에는 postgresql 서비스를 재시작해야한다.
 
-  ![img](blob:https://gt1000.atlassian.net/770b3afa-235c-42a4-b08f-2d5132130b8e#media-blob-url=true&id=15a5efb9-6423-4ecb-a71d-69f6112580e7&collection=contentId-235274269&contextId=235274269&mimeType=image%2Fpng&name=image-20200821-044102.png&size=49065&width=943&height=496&alt=)
+  ![](.\images\770b3afa-235c-42a4-b08f-2d5132130b8e.png)
 
    
 
