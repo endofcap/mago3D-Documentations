@@ -37,7 +37,7 @@
 
 - PostgreSQL 홈페이지(https://www.postgresql.org/)에 접속하여, Windows용 설치 파일을 내려 받는다 (https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
 
-![](.\images\85f72c0f-1fcd-4192-a2a5-d7a14172c051.png)
+![](./images/85f72c0f-1fcd-4192-a2a5-d7a14172c051.png)
 
 - 내려 받은 파일을 실행하여, PostgreSQL을 설치한다.
 
@@ -48,7 +48,7 @@
 
 - 포트(5432) 및 지역(Korea)을 설정한다.
 
-![](.\images\89c4c1ba-989b-493b-9d91-75568d2d2fa4.png)
+![](./images/89c4c1ba-989b-493b-9d91-75568d2d2fa4.png)
 
  
 
@@ -58,7 +58,7 @@
 - 여기서는 [postgis-bundle-pg12x64-setup-3.0.2-1.exe](http://download.osgeo.org/postgis/windows/pg12/postgis-bundle-pg12x64-setup-3.0.2-1.exe) 버전을 다운받는다.
 - 내려 받기가 완료되면 PostGIS 설치를 진행할 수 있다.
 
-![](.\images\24fcd1b5-0cdf-4f0e-b4e6-c26c7c052a52.png)
+![](./images/24fcd1b5-0cdf-4f0e-b4e6-c26c7c052a52.png)
 
 ### 3) PostgreSQL 설정
 
@@ -66,7 +66,7 @@
 
 - postgresql.conf 파일은 윈도우 기준으로 기본으로 설치시 **C:\Program Files\PostgreSQL\12\data** 경로에 위치하며, 설정파일 수정후에는 postgresql 서비스를 재시작해야한다.
 
-  ![](.\images\770b3afa-235c-42a4-b08f-2d5132130b8e.png)
+  ![](./images/770b3afa-235c-42a4-b08f-2d5132130b8e.png)
 
    
 
@@ -74,6 +74,7 @@
 
 - psql 또는 PgAdmin을 사용하여 데이터베이스에 연결한 후, 아래와 같이 데이터베이스를 생성한다.
 
+  ```
   CREATE DATABASE mago3d
   WITH OWNER = postgres
        ENCODING = 'UTF8'
@@ -82,16 +83,20 @@
        LC_COLLATE = 'C'
        LC_CTYPE = 'C'
        CONNECTION LIMIT = -1;
+  ```
 
 ### 5) PostGIS 활성화
 
 - psql 또는 PgAdmin을 사용하여 생성한 데이터베이스에 연결한 후, 다음 SQL을 실행한다.
 
+  ```
   CREATE EXTENSION postgis;
+  ```
 
 - PostGIS 설치 확인
-
+  ```
   SELECT postgis_version();
+  ```
 ### 3. GDAL
 ### 4. GeoServer
 ### 5. F4D Converter
