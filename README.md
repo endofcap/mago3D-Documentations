@@ -16,7 +16,7 @@ Repository for mago3D documents.
 
 ## mago3D
 ### [설치 가이드](https://github.com/endofcap/mago3D-Documentations/blob/main/installation_guide.md)
-#### Windows
-#### CentOS
+  #### Windows
+  #### CentOS
 ### 개발 가이드
 ### 사용 가이드 
