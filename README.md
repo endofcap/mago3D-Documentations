@@ -14,7 +14,7 @@ Repository for mago3D documents.
 
 ![](./images/ac3cdd08-1095-427d-a981-bd19b3b0acbf.png)
 
-## mago3D
+## mago3D 활용 가이드
 ### [설치 가이드](./installation_guide.md)
   * [Windows](./windows_installation.md)
   * CentOS
