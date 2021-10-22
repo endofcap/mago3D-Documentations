@@ -12,7 +12,7 @@ Repository for mago3D installations, manuals, and training materials.
 
 ![](./images/9de76378-b910-4658-84e2-b80bd9b90b01.png)
 
-![](C:\Users\신상희(SangheeShin)\OneDrive - gaia3d.com\Desktop\ac3cdd08-1095-427d-a981-bd19b3b0acbf.png)
+![](./images/ac3cdd08-1095-427d-a981-bd19b3b0acbf.png)
 
 ## mago3D
 ### 설치 가이드
