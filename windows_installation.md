@@ -246,6 +246,98 @@ https://sourceforge.net/projects/mango-spatialstatistics/files/GeoServer/
 
   ![](./images/8890e42d-321c-4dc3-aa0f-3a7a603276bd.png)
 ## 6. RabbitMQ
+- RabbitMQ란 표준 MQ 프로토콜인 AMOP(Advanced Message Queueing Protocol)의 메시지 브로커 소프트웨어 오픈소스이다.
+
+- RabbitMQ는 처리가 빠르다는 장점이 있으나, Erlang 의존성이 있기 때문에 설치에 앞서 Erlang/OTP를 필수적으로 설치해야 한다. RabbitMQ 버전별 Erlang 버전은 RabbitMQ 홈페이지[(https://www.rabbitmq.com/which-erlang.html](https://www.rabbitmq.com/which-erlang.html))에서 확인할 수 있다.
+
+### 1) Erlang 설치
+
+- rabbit mq 를 설치하기 위해서는 erlang 이 필요하기 때문에 먼저 erlang를 설치하도록 한다.
+
+- Erlang 홈페이지(https://www.erlang.org/downloads)에 접속하여, Download OTP 23.0 항목에서 ‘OTP 23.0 Windows 64-bit Binary File’을 클릭하여 파일을 내려 받는다.
+
+  ![img](./images/9888965a-6966-4969-8aac-538e9b2b5fc2.png)
+
+   
+
+- 내려 받은 파일을 실행한다.
+
+- 구성요소 설정은 기본값으로 할 것이므로 next를 클릭한다.
+
+- 설치 경로는 erlang 버전 관리를 용이하게 하고자 **‘C:\erlang\otp_22.2\erl10.6’** 으로 설정한다.
+
+- 설치 버튼을 클릭한다.
+
+- Visual C++ 구성요소 설치 창이 뜰 경우 체크박스를 체크하고 설치한다.
+
+### 2) RabbitMQ 설치
+
+- RabbitMQ 홈페이지(https://www.rabbitmq.com/download.html)에 접속하여, 최신 버전(RabbitMQ 3.8.7)을 확인하고 운영체제 환경에 맞춰 설치 파일을 내려 받는다.
+- 기본 설정으로 설정하고 Next를 클릭한다.
+
+- 경로는 **‘C:\RabbitMQ\’**로 설정하고, Install을 클릭하여 설치를 진행한다.
+
+- 설치가 완료된 것을 확인하고, next를 클릭한다.
+
+- 작업이 끝난 것이 확인되면 Finish 버튼을 클릭하여 창을 닫는다.
+
+ 
+
+### 3) RabbitMQ 환경변수 설정
+
+- [제어판] → [시스템 및 보안] → [시스템] 또는 [내 PC]의 [속성]을 클릭 한 후, [고급 시스템 설정]을 클릭한다.
+
+- [시스템 속성]의 [고급]탭 화면에서 [환경 변수]를 클릭한다.
+
+- [환경변수] 화면에서 [새로 만들기]를 클릭하여, 변수 이름과 변수 값 입력란에 **RABBITMQ_HOME**과 RabbitMQ 설치 경로를 설정한다.
+- RabbitMQ 설치 경로를 설정 한 후, **시스템 변수의 [Path] 변수**를 선택하고 [편집] 버튼을 클릭한다.
+- [새로 만들기] 버튼을 클릭하여, **%RABBITMQ_HOME%\sbin** 을 입력한다.
+
+### 4) RabbitMQ 관리자페이지([http://localhost:15672](http://localhost:15672/)) 접속
+
+- 관리자 페이지에 접속하기 위해서는 management plugin이 활성화 되어야 한다. (비활성화 시 접속 불가)
+- RabbitMQ의 management plugin을 활성화하기 위해 명령 프롬프트 창에 ‘**rabbitmq-plugins enable rabbitmq_management**’라고 입력하여 활성화한다.
+- 명령 프롬프트를 재시작하고, ‘**rabbitmq-plugins list**’로 플러그인의 활성화 여부를 확인한다.
+
+### 5) RabbitMQ 관리자 설정
+
+- RabbitMQ 관리자 페이지([http://localhost:15672](http://localhost:15672/))에 접속한다.
+- 아이디와 비밀번호는 모두 guest로 로그인한다.
+
+![img](./images/1cf84fa2-a2e4-47ad-b841-7dbfbca3ebd8.png)
+
+- 상단에 Exchange 탭을 클릭한다.
+
+- 하단에 Add a new exchanges를 클릭하여 우측 그림과 같이 입력한 뒤, Add exchange 버튼을 클릭한다.
+
+  - *Name : f4d.converter*
+  - *Type : topic*
+  - *Durability : Durable*
+
+  ![img](./images/88198c22-8c7c-4156-990e-cdf72b6cbe30.png)
+
+- 상단에 Queues 탭을 클릭한다.
+
+- 하단에 Add a new queue를 클릭하여 우측 그림과 같이 입력한 뒤, Add queue 버튼을 클릭한다.
+
+  ![img](./images/ff5e92b7-3c79-45dc-93b6-2d756de039b0.png)
+
+- RabbitMQ를 처음 설치하면 guest 계정이 Administrator로 권한 설정되어 있다. 하지만 이 계정으로 application에 접속할 시, 접속 관련 오류가 발생한다.
+
+- 다른 관리자 계정을 생성하기 위해 Admin 메뉴 하단의 Add a user를 클릭하고 우측 그림과 같이 입력하여 관리자 계정을 생성한다. (아이디와 비밀번호는 동일하다.)
+
+  - Username : mago3d
+
+  - Password : mago3d 
+
+    ![img](./images/b2448bde-1ea4-44b6-abe2-7082ae64cb97.png)
+
+   
+- guest 아래에 새로 생성된 mago3d계정을 클릭한다.
+
+- 아래 화면과 같이 Current permissions, Current topic permissions을 생성하고 Update this user에 비밀번호(mago3d)를 입력한 뒤, 하단의 Update user 버튼을 클릭한다.
+
+  ![](./images/d7b0e288-9c6a-4f45-af18-461a693c6a9a.png)
 ## 7. 기본 테이블 생성 및 패스워드 업데이트
 ## 8. 설정
 ## 9. 레이어 업로드 테스트
