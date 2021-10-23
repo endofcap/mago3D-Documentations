@@ -740,7 +740,7 @@
 
   - xvfb(X Virtual Frame Buffer) 
 
-    - 로컬 혹은 리모트 서버에 X로 접속하거나 띄우지 않고 콘솔로만 접속하여 윈도우 콘솔 프로그램을 돌리고자 할 경우에 사용하는 **Display server**이다. `Xvfb`는 여타 다른 Display server와 다르게 보여지는 output 없이 메모리 수준에서 graphic operation을 수행한다. 따라서 `Xvfb`가 수행되는 서버(컴퓨터)에서는 보여주기위한 출력장치나 입력장치가 존재하지 않아도 된다.([http://plus4070.github.io/nhn entertainment devdays/2016/03/27/Xvfb/](http://plus4070.github.io/nhn entertainment devdays/2016/03/27/Xvfb/))
+    - 로컬 혹은 리모트 서버에 X로 접속하거나 띄우지 않고 콘솔로만 접속하여 윈도우 콘솔 프로그램을 돌리고자 할 경우에 사용하는 **Display server**이다. `Xvfb`는 여타 다른 Display server와 다르게 보여지는 output 없이 메모리 수준에서 graphic operation을 수행한다. 따라서 `Xvfb`가 수행되는 서버(컴퓨터)에서는 보여주기위한 출력장치나 입력장치가 존재하지 않아도 된다.([http://plus4070.github.io/nhn entertainment devdays/2016/03/27/Xvfb/](http://plus4070.github.io/nhn%20entertainment%20devdays/2016/03/27/Xvfb/))
 
     - xvfb 설치 
       - sudo yum list | grep -i xvfb 명령으로 xvfb 를 respository 에서 검색해서 나오는 항목을 설치한다. 
