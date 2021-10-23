@@ -369,5 +369,25 @@ https://sourceforge.net/projects/mango-spatialstatistics/files/GeoServer/
 
    
 ## 8. 설정
+### 1) mago3d.properties 파일 경로 생성 
+
+- 어플리케이션에서 사용하는 폴더들을 생성해준다. 
+  - mago3d-admin - src - main - resources - mago3d.properties
+  - mago3d-user - src - main - resources - mago3d.properties
+  - mago3d-converter - src - main - resources - mago3d.properties
+
+### 2) datasource url 설정 
+
+- 현재 개발중인 mago3d 프로젝트는 datasource port를 15432 를 사용하고 있으므로, 설치한 postgresql 의 port 를 15432로 변경하거나 아래의 과정처럼 테스트 코드를 실행하여 암호화된 값으로 각 프로젝트의 application.properties 파일의 datasource url 을 변경해주도록 한다. 
+
+  - 암호화를 위한 테스트 코드 경로 : common - src - test - java -gaia3d - security - CryptTest
+
+  - mago3d-admin - src - main - resources - application.properties
+
+  - mago3d-user - src - main - resources - application.properties
+
+    ![img](./images/settings1.png)
+
+- 만약 postgresql 의 port를 15432로 변경할 경우 geoserver 의 postGIS 저장소의 port 도 동일하게 15432로 수정해야 한다. 
 ## 9. 레이어 업로드 테스트
 ## 10. 3D 데이터 업로드 테스트
