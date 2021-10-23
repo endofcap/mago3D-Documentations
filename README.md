@@ -42,3 +42,6 @@ Repository for mago3D documents.
   * [CentOS](./linux_installation.md)
 ### [mago3D 개발자 가이드](./developer_guide.md)
 ### [mago3D 사용자 가이드](./user_guide.md)
+
+### [mago3D-js 사용 가이드](./mago3d-js.md)
+
