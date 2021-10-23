@@ -3,8 +3,8 @@ Repository for mago3D documents.
 
 # 목차
 
-1. [mago3D 소개]()
-2. [mago3D 활용 가이드]()
+1. [mago3D 소개](#mago3d-소개)
+2. [mago3D 활용 가이드](#mago3d-활용-가이드)
 
 
 
