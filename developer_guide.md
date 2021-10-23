@@ -24,5 +24,5 @@
 
 
 
-## 0. mago3D 아키텍처 및 구성(./readme.md) 
+## 0. [mago3D 아키텍처 및 구성](./README.md) 
 
