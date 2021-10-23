@@ -377,3 +377,142 @@ ORDER BY
 
 ## 14. 빌드 
 
+- mago3d project 에서는 gradle 6.5.0 버전을 현재 사용중이며, 빌드시에는 별도로 설치한 gradle 을 사용하거나, 프로젝트에 포함된 gradle wrapper 를 사용해도 된다.
+
+- 프로젝트 전체를 빌드할 경우 root 경로에서, 특정 프로젝트를 빌드 할 때는 특정 프로젝트 경로에서 아래 명령어를 각각 수행한다.
+
+  ```
+  gradlew clean
+  gradlew build
+  ```
+
+- default properties 설정에는 resource 경로를 file path 로 사용중이기 때문에 Servlet container 에 애플리케이션을 올릴 경우에는 classpath 를 사용해야 한다.
+
+- properties 설정을 배포할 때 마다 바꾸는 일이 번거롭기 때문에 별도의 properties 들을 만들어 두고, 빌드시 profile 옵션을 사용하여 해당 설정파일들로 빌드 되도록 할 수 있다.
+
+- develop 으로 빌드할 경우 
+
+  ```
+  gradlew build -Pprofile=develop
+  ```
+
+- 빌드 성공시 프로젝트 경로/build/libs 에 build.gradle 설정에 따라 war 또는 jar 파일이 생성된다. 
+
+- war vs jar
+
+  - jar 로 빌드할 경우 springboot 에 내장된 톰캣으로 손쉽게 애플리케이션을 기동시킬 수 있다. 하지만 jar 로 빌드할 경우 properties 설정을 변경 할 수 없기 때문에 고객사에 납품해야 하는 경우 설정이 다를 수 있기 때문에 오히려 더 불편할 수도 있다.
+  - war 로 빌드할 경우 애플리케이션을 위한 별도의 Servlet Container(tomcat,jetty, jboss 등등) 가 필요하다. 
+
+
+
+## 15. 로깅 
+
+- resources/logback-spring.xml 에서 관리 
+
+- 로컬 개발환경에서는 ConsoleAppender 를 사용하고 로그레벨을 debug 로 사용한다. 
+
+- 개발중에 에러가 발생했는데 저 정확한 정보가 필요할 경우 org.springframework logger 를 다음과 같이 변경한다.
+
+  ```
+  <logger name="org.springframework.web" level="info" additivity="false" />
+  ```
+
+- 로컬 환경에서는 로깅을 debug 레벨로 사용해도 상관없지만, 운영 환경에서는 debug 레벨로 운영시 너무 많은 로그가 남게 되고, 로그를 기록하는 것 또한 성능에 영향을 미치기 때문에 운영레벨에서는 로그레벨을 info 정도로 하는것이 적당하다.  
+
+- 로컬에서 ConsoleAppender 를 사용했지만, 운영환경에서는 로그들을 파일로 관리할 필요가 있기 때문에 FileAppender 를 사용한다.
+
+
+
+## 16. Web/WAS Server 차이점
+
+- web server 
+
+  - 웹브라우저 클라이언트로부터 HTTP 요청을 받아 html, js 등과 같은 **정적 컨테츠**를 제공하는 서버 
+  - Apache, IIS, Nginx …
+
+- was server 
+
+  -  DB 조회나 다양한 로직 처리를 요구하는 **동적인 컨텐츠**를 제공하기 위해 만들어진 Application Server
+
+  - HTTP 를 통해 컴퓨터나 장치에 애플리케이션을 수행해주는 서버
+
+  - Tomcat, WebSphere, JBoss …
+
+    ![img](./images/web1.png)
+
+- Web Server 와 Was Server 를 분리하는 이유 
+
+  - Was Server 는 DB 조회나 다양한 로직을 처리하느라 부하가 많이 걸리기 때문에 단순한 정적 컨텐츠는 Web Server 에서 빠르게 클라이언트에게 제공하는 것이 좋다. 만약 정적 컨텐츠 요청까지 Was Server 가 처리한다면 정적 데이터 처리로 인해 부하가 커지게 되고, 동적 컨텐츠의 처리가 지연됨에 따라 수행 속도가 느려진다.
+  - 물리적으로 분리하여 보안 강화
+  - Load Balancing, fail over 처리 등에 유리하다.
+
+
+
+## 17. Web & WAS Server 연동 및 테스트
+
+- Apache & Tomcat 
+  - mod_jk(추천)
+    - JKMount 옵션을 이용하면 URL 이나 컨텐츠별로 유연한 설정이 가능하다. 
+    - 설정이 어려움
+    - 톰캣 전용
+  - mod_proxy, mod_proxy_ajp
+    - 별도 모듈 설치가 필요 없고 설정이 간편하다.
+    - 특정 WAS 에 의존적이지 않다. 
+    - URL 별 유연한 설정이 어렵다.
+- Nginx & Tomcat
+  - nginx conf 파일의 location 에 프록시 설정을 추가하여 연동 가능하다.
+- 테스트 
+  - was 에 배포한 application 의 특정 url 에 접근하여 web/was server 의 access_log 파일들을 확인.
+  - ![img](./images/web2.png)
+
+
+
+## 18. Tomcat 설정
+
+- server.xml 에 설정에 따라 tomcat 경로의 webapps 밑에 application 을 배치하고 서비스 하거나 특정 경로에 두고 서비스가 가능하다.
+  - appBase : application 이 실행 되는 가상 호스트 디렉토리(webapps)
+  - docBase : application 이 실행 되는 별도의 디렉토리 지정
+- docBase 사용시에는 application 경로는 webapps 하위 경로를 사용하지 않는다. mago3D application 기동시 logback 설정등과 관련하여 충돌이 있는 경우가 있으므로…
+- 리눅스 환경에서 사용시에는 catalina.out 파일이 제한없이 계속 커지기 때문에 catalina.sh 파일에서 catalina.out 파일을 사용하지 않도록 설정하거나 리눅스의 log rotate 설정을 한다. 
+- setenv.sh(리눅스), setenv.bat(윈도우) 파일에 jvm 관련 옵션들을 사용할 수 있다. 
+  - 윈도우 환경에서 서비스를 등록시 setenv.bat 파일에 설정한 옵션들이 적용되지 않으므로 이 경우에는 service.bat 파일에 적용해야 한다.
+
+
+
+## 19. 서비스 등록
+
+- tomcat
+  - tomcat 폴더의 service.bat 파일을 이용하여 서비스를 등록 할 수 있다.
+- nginx.exe & mago3d-converter.jar
+  - winsw 라는 프로그램을 통해 서비스를 등록 할 수 있다.
+
+
+
+## 20. Windows 서버  구축하기(미션)
+
+- java 설치 및 환경변수 등록 java install and set environment variable
+- postgresql 설치 install postgresql
+  - port 5432 로 설치 
+  - **mago3d admin/user 의 jdbc url 은 15432 port 로 되어 있으므로 서비스 배포시 postgresql port 에 맞게 변경 필요** change jdbc url port from 15432 to 5432
+- gdal 설치 및 환경변수 등록 install gdal and set environment variable
+- rabbitmq 설치  및 환경변수 등록 install rabbitmq and set environment variable
+- f4d converter 설치 install f4d converter
+- geoserver tomcat 으로 배포 후 서비스 등록 
+  deploy geoserver in tomcat and register tomcat as windows service
+  - geoserver_data_dir 은 별도의 경로로 지정 set path geoserver_data_dir
+  - jvm size min max 4G 설정 set jvm memory 4gigabyte
+- mago3d-admin / mago3d-user 를 하나의 tomcat 에 각각의 서비스로 배포 후 서비스 등록
+  deploy mago3d-admin/mago3d-user in tomcat and register tomcat as windows service
+  - jvm size min max 4G 설정 set jvm memory 4gigabyte
+  - admin/user 를 파일로 로깅  set file logging (admin/user)
+- nginx 서비스 등록 및 mago3d tomcat 서버와 연동하고 정적 컨텐츠는 nginx 가 처리하도록 설정
+  register nginx as windows service and set up tomcat with nginx
+  static contents -> nginx
+- mago3d-converter.jar 서비스 등록 register mago3d-converter.jar as windows service
+  - 파일로 로깅 set file logging
+- 테스트 test
+  - mago3d-admin 에서 행정구역 레이어 등록 
+    register 2d layer on mago3d-admin
+  - mago3d-user 에서 3D 레이어 자동 변환 및 가시화 
+    3d file converting and visualization on mago3d-user
+
