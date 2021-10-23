@@ -40,5 +40,5 @@ Repository for mago3D documents.
 ### [mago3D 설치 가이드](./installation_guide.md)
   * [Windows](./windows_installation.md)
   * [CentOS](./linux_installation.md)
-### mago3D 개발자 가이드
+### [mago3D 개발자 가이드](./developer_guide.md)
 ### mago3D 사용자 가이드 
