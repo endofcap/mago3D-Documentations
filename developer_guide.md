@@ -26,3 +26,10 @@
 
 ## 0. [mago3D 아키텍처 및 구성](./README.md) 
 
+## 1. 개발환경 구축
+
+- java 설치
+- docker-compose 로 개발환경을 구축하는 경우 geoserver, database, rabbitmq 설정은 skip
+- intellij 에서 개발환경을 구축하는 경우 static resource 들을 build 없이 갱신하기 위하여 resource 경로를 file path 로 잡아 주기 때문에, 실행을 bootRun 으로 실행하거나 configuration 에 Working directory 를 **$MODULE_WORKING_DIR$** 로 설정해 주어야 한다.
+  [설치 가이드](./installation_guide.md)
+- 
