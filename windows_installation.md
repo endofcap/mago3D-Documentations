@@ -350,7 +350,24 @@ https://sourceforge.net/projects/mango-spatialstatistics/files/GeoServer/
 - 아래 화면과 같이 Current permissions, Current topic permissions을 생성하고 Update this user에 비밀번호(mago3d)를 입력한 뒤, 하단의 Update user 버튼을 클릭한다.
 
   ![](./images/d7b0e288-9c6a-4f45-af18-461a693c6a9a.png)
+  
 ## 7. 기본 테이블 생성 및 패스워드 업데이트
+### 1) SQL 실행
+
+- mago3d 프로젝트 내 doc 폴더에서 [database] – [ddl] 폴더와 [dml] 폴더에서 sequence 폴더부터 dml 폴더 안의 update.sql까지 순서대로 실행한다.
+- **단 reference.sql, delete.sql 은 제외(참조키 관련내용은 실행하지 않는다.)**
+- **프로젝트의 브런치는 develop이 아닌 mago3d 브런치를 사용하도록 한다.**
+- pgAdmin4를 사용할 경우 실행할 sql 파일들을 선택후 드래그하여 한번에 실행할 수 있다.
+
+### 2) mago3d-web application 계정 비밀번호 설정
+
+- [mago3d-admin] – [src/test/java] – gaia3d– units – passwordTest.java 파일을 Junit Test로 실행한다.
+
+- Console창에 뜬 encodePassword 값을 복사하여 pgAdmin의 Query Editor에서 update문(update user_info set password = ‘(encodePassword 값)’ where user_id=＇admin’; )으로 admin의 비밀번호 값을 변경한다. mago3d 계정도 동일한 방식으로 변경한다.
+
+  ![img](./images/Table-1.png)
+
+   
 ## 8. 설정
 ## 9. 레이어 업로드 테스트
 ## 10. 3D 데이터 업로드 테스트
